@@ -1,14 +1,12 @@
-<form id="form" name="form" [formGroup]="form">
-  <div class="card" style="width: 18rem">
-    <img formControlName="imagem" class="card-img-top w-50" alt="..." />
-    <div class="card-body">
-      <h4 class="card-title" formControlName="nome">BEBELA ROSA</h4>
-      <h5 formControlName="categoria">Refresher</h5>
-      <p formControlName="descricao" class="card-text">
-        Uma bebida de Morango com adição de leite, castanha de caju, batidos com
-        gelos na coqueteleira
-      </p>
-      <p formControlName="valor" optionValue="value"></p>
-    </div>
+<div class="card" style="width: 14rem" *ngFor="let bebida of allBebidas">
+  <img class="card-img-top" src="{{ bebida.imagem }}" style="width: 14rem" />
+  <div class="card-body">
+    <h3 class="card-title">{{ bebida.categoria }}</h3>
+    <h5>{{ bebida.nome }}</h5>
+    <p class="card-text">{{ bebida.descricao }}</p>
+    <span class="d-flex justify-content-center"><b>R$ {{ bebida.valor }}</b></span>
   </div>
-</form>
+  <div class="d-flex justify-content-center">
+    <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-secondary p-button-text"></p-button>
+  </div>
+</div>

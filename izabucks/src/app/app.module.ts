@@ -6,14 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { CardComponent } from './shared/card/card.component';
 import { BebidasService } from './core/api/bebidas.service';
+import { CardModule } from './shared/card/card.module';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    CardComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +21,8 @@ import { BebidasService } from './core/api/bebidas.service';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    ButtonModule,
+    CardModule,
   ],
   providers: [BebidasService],
   bootstrap: [AppComponent]
