@@ -1,11 +1,52 @@
 <form id="form" name="form" [formGroup]="form">
-    <input class="form-control" type="text" placeholder="Categoria" formControlName="categoria">
-    <input class="form-control" type="text" placeholder="Nome" formControlName="nome">
-    <input class="form-control" type="text" placeholder="Link da Imagem" formControlName="imagem">
-    <input class="form-control" type="number" placeholder="Digite o valor do produto" formControlName="valor">
-    <div class="mb-3">
-      <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="descricao"></textarea>
+  <div class="d-flex flex-column align-items-center mt-5">
+    <div class="w-75 pt-3">
+      <label for="categoria">Categoria</label>
+      <input
+        id="categoria"
+        class="form-control"
+        type="text"
+        placeholder="Digite a Categoria"
+        formControlName="categoria"
+      />
     </div>
-    <button type="submit" (click)="cadastrarBebida()">Cadastrar Bebida</button>
+    <div class="w-75 pt-3">
+      <label for="nome">Nome</label>
+      <input
+        class="form-control "
+        type="text"
+        placeholder="Digite o Nome"
+        formControlName="nome"
+      />
+    </div>
+    <div class="w-75 pt-3">
+      <label for="imagem">Imagem</label>
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Link da Imagem"
+        formControlName="imagem"
+      />
+    </div>
+    <div class="w-75 pt-3">
+      <label for="valor">Valor do Produto</label>
+      <input
+        class="form-control"
+        type="number"
+        placeholder="Digite o valor do produto"
+        formControlName="valor"
+      />
+    </div>
+
+    <div class="mb-3 w-75 pt-3">
+      <label for="textArea" class="form-label">Descrição</label>
+      <textarea
+        class="form-control"
+        id="textArea"
+        rows="3"
+        formControlName="descricao"
+      ></textarea>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="cadastrarBebida()">Cadastrar Bebida</button>
+  </div>
 </form>
