@@ -1,0 +1,11 @@
+<form id="form" name="form" [formGroup]="form">
+    <input class="form-control" type="text" placeholder="Categoria" formControlName="categoria">
+    <input class="form-control" type="text" placeholder="Nome" formControlName="nome">
+    <input class="form-control" type="text" placeholder="Link da Imagem" formControlName="imagem">
+    <input class="form-control" type="number" placeholder="Digite o valor do produto" formControlName="valor">
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="descricao"></textarea>
+    </div>
+    <button type="submit" (click)="cadastrarBebida()">Cadastrar Bebida</button>
+</form>

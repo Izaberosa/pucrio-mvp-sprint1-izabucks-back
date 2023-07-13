@@ -7,4 +7,5 @@ export interface Bebida {
     nota_media?: number;
     total_comentarios?: number;
     valor?: number;
+    bebidas?: any;
 }
