@@ -16,4 +16,8 @@ export class BebidasService {
   postBebidas(dadosBebidas: any): Observable<any> {
     return this.http.post<any>(`${this.url}adicionar`, dadosBebidas);
   }
+
+  deleteBebida(id: string, nome: string): Observable<any> {
+    return this.http.delete<any>(`${this.url}deletar?id=${id}&nome=${nome}`);
+  }
 }

@@ -1,11 +1,12 @@
-import { takeUntil, Subject } from 'rxjs';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+
+import { takeUntil, Subject } from 'rxjs';
+import { MessageService } from 'primeng/api';
+
 import { BebidasService } from 'src/app/core/api/bebidas.service';
 import { Bebida } from '../models/bebida.model';
-
-import { MessageService } from 'primeng/api';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-modal-form-card',
@@ -19,7 +20,8 @@ export class ModalFormCardComponent {
   constructor(
     private fb: FormBuilder,
     private bebidasService: BebidasService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private matDialog: MatDialog
   ) {
     this.form = this.fb.group({
       categoria: [null, Validators.required],
@@ -32,38 +34,29 @@ export class ModalFormCardComponent {
 
   cadastrarBebida() {
     const dadosBebidas: Bebida = {
-      bebidas: {
-        categoria: this.form.get('categoria')?.value,
-        nome: this.form.get('nome')?.value,
-        imagem: this.form.get('imagem')?.value,
-        valor: this.form.get('valor')?.value,
-        descricao: this.form.get('descricao')?.value,
-        price: null,
-        id: null,
-        nota_media: null,
-      },
+      categoria: this.form.get('categoria')?.value,
+      nome: this.form.get('nome')?.value,
+      imagem: this.form.get('imagem')?.value,
+      valor: this.form.get('valor')?.value,
+      descricao: this.form.get('descricao')?.value,
+      price: this.form.get('valor')?.value,
+      id: null,
+      nota_media: 0,
     };
     this.bebidasService
       .postBebidas(dadosBebidas)
       .pipe(takeUntil(this.unsubscribeAll$))
-      .subscribe(
-        (value) => {
-          if (value) {
-            alert(value);
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Bebida Cadastrada com Sucesso!',
-              detail: 'Cadastro feito com sucesso',
-            });
-          }
-        },
-        (error: HttpErrorResponse) => {
+      .subscribe({
+        next: (bebida) => {
           this.messageService.add({
-            severity: 'error',
-            summary: 'Não foi possível cadastrar a bebida',
-            detail: 'Falha no cadastro',
+            severity: 'success',
+            summary: 'Bebida Cadastrada com Sucesso!',
+            detail: 'Cadastro feito com sucesso',
           });
-        }
-      );
+        },
+        error: (error) => {
+          this.messageService.add(error);
+        },
+      });
   }
 }
